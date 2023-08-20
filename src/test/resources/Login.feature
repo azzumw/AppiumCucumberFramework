@@ -4,7 +4,7 @@ Feature: Login scenarios
   Scenario Outline: Login fails when invalid username is provided
     Given I enter the username as "<username>"
     And I enter the password as "<password>"
-    When "I press the login button"
+    When I press the login button
     Then Login should fail with the error "<error>"
     Examples:
       | username | password | error |
@@ -13,7 +13,7 @@ Feature: Login scenarios
   Scenario Outline: Login with invalid password
     Given I enter the username as "<username>"
     And I enter the password as "<password>"
-    When "I press the login button"
+    When I press the login button
     Then Login should fail with the error "<error>"
     Examples:
       | username | password | error |
@@ -22,7 +22,7 @@ Feature: Login scenarios
   Scenario Outline: Login with valid username and password
     Given I enter the username as "<username>"
     And I enter the password as "<password>"
-    When "I press the login button"
+    When I press the login button
     Then I should see products page with title "<title>"
     Examples:
       | username | password | title |
