@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class TestUtils {
-    public static final long WAIT = 10L;
+    public static final long WAIT_TEN_SEC = 10L;
     public static final String FILE_EXTENSION = ".png";
     public static final String UNDERSCORE = "_";
     public static final String VIDEO_FILE_EXTENSION = ".mp4";
