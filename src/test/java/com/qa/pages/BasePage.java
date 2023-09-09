@@ -1,4 +1,4 @@
-package com.qa.runners.pages;
+package com.qa.pages;
 
 import com.qa.utils.DriverManager;
 import com.qa.utils.GlobalParams;
@@ -18,6 +18,7 @@ import java.time.Duration;
 
 public class BasePage {
     private AppiumDriver driver;
+    private TestUtils testUtils = new TestUtils();
 
     public BasePage(){
         driver = new DriverManager().getDriver();
@@ -51,7 +52,7 @@ public class BasePage {
 
     public void sendKeys(WebElement element,String text,String message){
         waitForVisibility(element);
-        TestUtils.log().info(message);
+        testUtils.log().info(message);
         element.sendKeys(text);
     }
 

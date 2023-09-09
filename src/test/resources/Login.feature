@@ -1,6 +1,7 @@
 Feature: Login scenarios
   Let's you authenticate the user
 
+
   Scenario Outline: Login fails when invalid username is provided
     Given I enter the username as "<username>"
     And I enter the password as "<password>"
@@ -17,7 +18,7 @@ Feature: Login scenarios
     Then Login should fail with the error "<error>"
     Examples:
       | username | password | error |
-      | standard_user | invalidpassword | Username and password do not match any user in this server.|
+      | standard_user | invalidpassword | Username and password do not match any user in this service.|
 
   Scenario Outline: Login with valid username and password
     Given I enter the username as "<username>"

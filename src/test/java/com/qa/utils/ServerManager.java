@@ -5,9 +5,12 @@ import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyE
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
+
 import java.io.File;
 
 public class ServerManager {
+
+    private TestUtils testUtils = new TestUtils();
 
     private static String driverExe = "/opt/homebrew/bin/node";
 
@@ -19,7 +22,7 @@ public class ServerManager {
 
 
     public AppiumDriverLocalService getCustomAppiumService() {
-        TestUtils.log().info("Global Parameters inside Server Manager");
+        testUtils.log().info("Global Parameters inside Server Manager");
         GlobalParams params = new GlobalParams();
         return AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
                 .usingDriverExecutable(new File(driverExe))
@@ -32,13 +35,13 @@ public class ServerManager {
     }
 
     public void startServer() {
-        TestUtils.log().info("starting appium server");
+        testUtils.log().info("starting appium server");
 
         AppiumDriverLocalService localServer = getCustomAppiumService();
         localServer.start();
 
         if (localServer == null || !localServer.isRunning()) {
-            TestUtils.log().fatal("unable to start server. aborting.");
+            testUtils.log().fatal("unable to start server. aborting.");
             throw new AppiumServerHasNotBeenStartedLocallyException("appium server not started. Aborting.");
         }
 
@@ -48,12 +51,12 @@ public class ServerManager {
 //        server = getAppiumServiceDefault();
 //        server.start();
 
-        TestUtils.log().info("appium server started");
+        testUtils.log().info("appium server started");
     }
 
-    public static void stopServer() {
-        TestUtils.log().info("Stopping appium server");
+    public  void stopServer() {
+        testUtils.log().info("Stopping appium server");
         server.get().stop();
-        TestUtils.log().info("Appium Server Stopped");
+        testUtils.log().info("Appium Server Stopped");
     }
 }

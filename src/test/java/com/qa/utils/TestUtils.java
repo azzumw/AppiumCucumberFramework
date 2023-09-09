@@ -22,52 +22,57 @@ public class TestUtils {
     public static final String VIDEO_FILE_EXTENSION = ".mp4";
     public static final String ROUTING_KEY = "ROUTINGKEY";
 
-    public static HashMap<String, String> parseStringXML(InputStream file) throws Exception {
-        HashMap<String, String> stringHashMap = new HashMap();
 
-        //get document builder
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newDefaultInstance();
-        DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
-
-        //build document
-        Document document = documentBuilder.parse(file);
-
-        //Normalise the XML Structure
-        document.getDocumentElement().normalize();
-
-        //root node
-        Element root = document.getDocumentElement();
-
-        //Get all elements
-        NodeList nodeList = document.getElementsByTagName("string");
-
-        for (int temp = 0; temp < nodeList.getLength(); temp++) {
-            Node node = nodeList.item(temp);
-
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-
-                //store each element key value in map
-                stringHashMap.put(element.getAttribute("name"), element.getTextContent());
-            }
-        }
-
-        return stringHashMap;
+    public  Logger log(){
+        return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
     }
 
-    public static String getDateTime() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy_hh-mm-ss");
-        return simpleDateFormat.format(new Date());
-    }
+//    public static HashMap<String, String> parseStringXML(InputStream file) throws Exception {
+//        HashMap<String, String> stringHashMap = new HashMap();
+//
+//        //get document builder
+//        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newDefaultInstance();
+//        DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
+//
+//        //build document
+//        Document document = documentBuilder.parse(file);
+//
+//        //Normalise the XML Structure
+//        document.getDocumentElement().normalize();
+//
+//        //root node
+//        Element root = document.getDocumentElement();
+//
+//        //Get all elements
+//        NodeList nodeList = document.getElementsByTagName("string");
+//
+//        for (int temp = 0; temp < nodeList.getLength(); temp++) {
+//            Node node = nodeList.item(temp);
+//
+//            if (node.getNodeType() == Node.ELEMENT_NODE) {
+//                Element element = (Element) node;
+//
+//                //store each element key value in map
+//                stringHashMap.put(element.getAttribute("name"), element.getTextContent());
+//            }
+//        }
+//
+//        return stringHashMap;
+//    }
 
-    public static String getImagePath(String className, String testMethodName, String deviceName, String platformName) {
-        return "Screenshots" + File.separator +
-                platformName + "_" +
-                deviceName + File.separator +
-                className + File.separator +
-                testMethodName + "_" + getDateTime() +
-                FILE_EXTENSION;
-    }
+//    public static String getDateTime() {
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy_hh-mm-ss");
+//        return simpleDateFormat.format(new Date());
+//    }
+
+//    public static String getImagePath(String className, String testMethodName, String deviceName, String platformName) {
+//        return "Screenshots" + File.separator +
+//                platformName + "_" +
+//                deviceName + File.separator +
+//                className + File.separator +
+//                testMethodName + "_" + getDateTime() +
+//                FILE_EXTENSION;
+//    }
 
 //    public static void captureVideo(ITestResult result, String base64media) {
 //        if (result.getStatus() == ITestResult.FAILURE) {
@@ -96,16 +101,14 @@ public class TestUtils {
 //        }
 //    }
 
-    public static void createLogFolders(String platformName,String deviceName){
-        String strFile = "logs" + File.separator + platformName + "_" + deviceName;
-        File logfile = new File((strFile));
-        if(!logfile.exists()){
-            logfile.mkdirs();
-        }
-        ThreadContext.put(ROUTING_KEY,strFile);
-    }
+//    public static void createLogFolders(String platformName,String deviceName){
+//        String strFile = "logs" + File.separator + platformName + "_" + deviceName;
+//        File logfile = new File((strFile));
+//        if(!logfile.exists()){
+//            logfile.mkdirs();
+//        }
+//        ThreadContext.put(ROUTING_KEY,strFile);
+//    }
 
-    public static Logger log(){
-        return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
-    }
+
 }

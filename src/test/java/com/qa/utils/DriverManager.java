@@ -3,13 +3,12 @@ package com.qa.utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.cucumber.java.en.And;
 
 import java.io.IOException;
 
 public class DriverManager {
     private static ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
-
+    private TestUtils testUtils = new TestUtils();
     public AppiumDriver getDriver(){
         return  driver.get();
     }
@@ -25,12 +24,12 @@ public class DriverManager {
 
         if(driver == null){
             try {
-                TestUtils.log().info("initialising driver");
+                testUtils.log().info("initialising driver");
 
                 switch (globalParams.getPlatformName()){
-                    case "Android": new AndroidDriver(new ServerManager().getServer().getUrl(),new CapabilitiesManager().getDesiredCapabilities());
+                    case "Android": driver = new AndroidDriver(new ServerManager().getServer().getUrl(),new CapabilitiesManager().getDesiredCapabilities());
                     break;
-                    case "iOS": new IOSDriver(new ServerManager().getServer().getUrl(),new CapabilitiesManager().getDesiredCapabilities());
+                    case "iOS": driver = new IOSDriver(new ServerManager().getServer().getUrl(),new CapabilitiesManager().getDesiredCapabilities());
                     break;
                 }
 
@@ -38,10 +37,10 @@ public class DriverManager {
                     throw new Exception("driver still not init");
                 }
                 this.setDriver(driver);
-                TestUtils.log().info("Driver init");
+                testUtils.log().info("Driver init");
             }catch (IOException e){
                 e.printStackTrace();
-                TestUtils.log().fatal("Driver init failure. ABORT!!!");
+                testUtils.log().fatal("Driver init failure. ABORT!!!");
             } catch (Exception e) {
                 e.printStackTrace();
             }

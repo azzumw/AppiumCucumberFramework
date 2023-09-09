@@ -1,6 +1,7 @@
 package com.qa.utils;
 
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class CapabilitiesManager {
+    private TestUtils testUtils = new TestUtils();
 
     private static String getAPKPath(String apkName) {
 
@@ -17,7 +19,7 @@ public class CapabilitiesManager {
     }
 
     public DesiredCapabilities getDesiredCapabilities() throws IOException {
-        TestUtils.log().info("Desired capabilities being set");
+        testUtils.log().info("Desired capabilities being set");
         GlobalParams params = new GlobalParams();
         Properties properties = new PropertyManager().getProperties();
 
@@ -46,7 +48,7 @@ public class CapabilitiesManager {
             return desiredCapabilities;
         }catch (Exception e){
             e.printStackTrace();
-            TestUtils.log().error("DesiredCapabilities issue: " + e.getLocalizedMessage());
+            testUtils.log().fatal("DesiredCapabilities issue: " + e.getLocalizedMessage());
             throw e;
         }
     }

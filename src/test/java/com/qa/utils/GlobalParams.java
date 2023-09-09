@@ -76,12 +76,12 @@ public class GlobalParams {
 
         switch (params.getPlatformName()) {
             case "Android":
-                params.setSystemPort(System.getProperty("systemPort", "10000"));
-                params.setChromeDriverPort(System.getProperty("chromeDriverPort", "Android"));
+                params.setSystemPort(System.getProperty("systemPort", "9999"));
+                params.setChromeDriverPort(System.getProperty("chromeDriverPort", "9998"));
                 break;
             case "iOS":
-                params.setWebkitDebugProxyPort(System.getProperty("webkitDebugProxyPort", ""));
-                params.setWdaLocalPort(System.getProperty("wdaLocalPort", ""));
+                params.setWebkitDebugProxyPort(System.getProperty("webkitDebugProxyPort", "10001"));
+                params.setWdaLocalPort(System.getProperty("wdaLocalPort", "11001"));
                 break;
         }
     }

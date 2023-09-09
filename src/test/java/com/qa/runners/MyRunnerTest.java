@@ -8,11 +8,13 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber/cucumber.html"},
+        plugin = {"pretty", "html:target/cucumber/cucumber.html","summary"},
         features = {"src/test/resources"},
         glue = {"com.qa.stepdefinitions"},
         snippets = CAMELCASE,
-        dryRun = true,
+//        dryRun = true,
         monochrome = true)
 public class MyRunnerTest {
 }
+
+//append Test keyword to the classname
