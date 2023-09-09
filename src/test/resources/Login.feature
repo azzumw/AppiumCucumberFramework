@@ -1,7 +1,7 @@
 Feature: Login scenarios
   Let's you authenticate the user
 
-
+  @test
   Scenario Outline: Login fails when invalid username is provided
     Given I enter the username as "<username>"
     And I enter the password as "<password>"

@@ -6,7 +6,9 @@ import com.qa.utils.ServerManager;
 import com.qa.utils.TestUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.ThreadContext;
+import org.openqa.selenium.OutputType;
 
 /**
  * hooks to start the appium server
@@ -33,15 +35,20 @@ public class Hooks {
 
         new ServerManager().startServer();
         new DriverManager().initDriver();
-
     }
 
     //executes after every scenario
     @After
-    public void quit() {
+    public void quit(Scenario scenario) {
         testUtils.log().info("Hooks: After");
         ServerManager serverManager = new ServerManager();
         DriverManager driverManager = new DriverManager();
+
+        if(scenario.isFailed()){
+            byte[] screenshot = new DriverManager().getDriver().getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot,"image/png", scenario.getName());
+        }
+
         if (driverManager.getDriver() != null) {
             driverManager.getDriver().quit();
             driverManager.setDriver(null);

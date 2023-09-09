@@ -13,6 +13,7 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
         glue = {"com.qa.stepdefinitions"},
         snippets = CAMELCASE,
 //        dryRun = true,
+        tags = "@test",
         monochrome = true)
 public class MyRunnerTest {
 }
