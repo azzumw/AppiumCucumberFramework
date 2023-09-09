@@ -1,11 +1,14 @@
 package com.qa.stepdefinitions;
 
+import com.qa.pages.BasePage;
 import com.qa.utils.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.OutputType;
+
+import java.io.IOException;
 
 /**
  * hooks to start the appium server
@@ -21,26 +24,17 @@ public class Hooks {
 
     //executes before every scenario
     @Before
-    public void initialise() {
+    public void initialise() throws IOException {
         testUtils.log().info("Hooks: Before");
-
-        GlobalParams globalParams = new GlobalParams();
-        globalParams.initializeGlobalParams();
-
-        //log4j2 create folders for each device
-        ThreadContext.put("ROUTINGKEY", globalParams.getPlatformName() + TestUtils.UNDERSCORE + globalParams.getDeviceName());
-
-        new ServerManager().startServer();
-        new DriverManager().initDriver();
+        new BasePage().activateApp();
         new VideoManager().startRecording();
     }
 
     //executes after every scenario
     @After
-    public void quit(Scenario scenario) {
+    public void quit(Scenario scenario) throws IOException {
         testUtils.log().info("Hooks: After");
-        ServerManager serverManager = new ServerManager();
-        DriverManager driverManager = new DriverManager();
+
 
         if(scenario.isFailed()){
             byte[] screenshot = new DriverManager().getDriver().getScreenshotAs(OutputType.BYTES);
@@ -48,14 +42,6 @@ public class Hooks {
         }
 
         new VideoManager().stopRecording(scenario);
-
-        if (driverManager.getDriver() != null) {
-            driverManager.getDriver().quit();
-            driverManager.setDriver(null);
-        }
-
-        if (serverManager.getServer() != null) {
-            serverManager.getServer().stop();
-        }
+        new BasePage().terminateApp();
     }
 }
