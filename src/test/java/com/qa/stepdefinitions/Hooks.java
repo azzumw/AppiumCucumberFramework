@@ -1,9 +1,6 @@
 package com.qa.stepdefinitions;
 
-import com.qa.utils.DriverManager;
-import com.qa.utils.GlobalParams;
-import com.qa.utils.ServerManager;
-import com.qa.utils.TestUtils;
+import com.qa.utils.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -35,6 +32,7 @@ public class Hooks {
 
         new ServerManager().startServer();
         new DriverManager().initDriver();
+        new VideoManager().startRecording();
     }
 
     //executes after every scenario
@@ -48,6 +46,8 @@ public class Hooks {
             byte[] screenshot = new DriverManager().getDriver().getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png", scenario.getName());
         }
+
+        new VideoManager().stopRecording(scenario);
 
         if (driverManager.getDriver() != null) {
             driverManager.getDriver().quit();
