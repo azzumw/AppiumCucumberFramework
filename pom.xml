@@ -14,6 +14,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+<!--                    <includes>-->
+<!--                        <include>CucumberRunnerTest.java</include>-->
+<!--                    </includes>-->
                 </configuration>
             </plugin>
         </plugins>
