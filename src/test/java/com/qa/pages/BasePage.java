@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class BasePage {
-    private AppiumDriver driver;
+    private static AppiumDriver driver;
     private TestUtils testUtils = new TestUtils();
 
     public BasePage(){

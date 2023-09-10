@@ -12,12 +12,12 @@ import org.apache.logging.log4j.ThreadContext;
 import org.testng.annotations.*;
 
 @CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber/cucumber.html","summary"},
+        plugin = {"pretty", "html:target/cucumber//Pixel_6/cucumber.html","summary"},
         features = {"src/test/resources"},
         glue = {"com.qa.stepdefinitions"},
         tags = "@test",
         monochrome = true)
-public class TestngRunnerTest {
+public class TestngPixel6RunnerTest {
     private TestNGCucumberRunner testNGCucumberRunner;
 
     @Parameters({"platformName", "udid", "deviceName", "systemPort", "chromeDriverPort", "wdaLocalPort", "webkitDebugProxyPort"})

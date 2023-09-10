@@ -8,19 +8,19 @@
         <parameter name="systemPort" value="9999"/>
         <parameter name="chromeDriverPort" value="9998"/>
         <classes>
-            <class name="com.qa.runners.TestngRunnerTest"/>
+            <class name="com.qa.runners.TestngPixel6RunnerTest"/>
         </classes>
     </test>
 
-    <test name="Pixel_3_emulator">
-        <parameter name="platformName" value="Android"/>
-        <parameter name="udid" value="emulator-5555"/>
-        <parameter name="platformVersion" value="api_29"/>
-        <parameter name="deviceName" value="pixel_3"/>
-        <parameter name="systemPort" value="9996"/>
-        <parameter name="chromeDriverPort" value="9997"/>
-        <classes>
-            <class name="com.qa.runners.TestngRunnerTest"/>
-        </classes>
-    </test>
+<!--    <test name="Pixel_3_emulator">-->
+<!--        <parameter name="platformName" value="Android"/>-->
+<!--        <parameter name="udid" value="emulator-5556"/>-->
+<!--        <parameter name="platformVersion" value="api_29"/>-->
+<!--        <parameter name="deviceName" value="pixel_3"/>-->
+<!--        <parameter name="systemPort" value="9996"/>-->
+<!--        <parameter name="chromeDriverPort" value="9997"/>-->
+<!--        <classes>-->
+<!--            <class name="com.qa.runners.TestngPixel3RunnerTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

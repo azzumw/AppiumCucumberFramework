@@ -7,7 +7,7 @@ import io.appium.java_client.ios.IOSDriver;
 import java.io.IOException;
 
 public class DriverManager {
-    private static ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
+    private final static ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
     private TestUtils testUtils = new TestUtils();
     public AppiumDriver getDriver(){
         return  driver.get();

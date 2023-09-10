@@ -15,7 +15,7 @@ public class PropertyManager {
         if (properties.isEmpty()){
             testUtils.log().info("loading config properties");
             try{
-                inputStream = PropertyManager.class.getResourceAsStream(propertiesFilename);
+                inputStream = this.getClass().getResourceAsStream(propertiesFilename);
                 properties.load(inputStream);
             } catch (IOException e) {
                 e.printStackTrace();

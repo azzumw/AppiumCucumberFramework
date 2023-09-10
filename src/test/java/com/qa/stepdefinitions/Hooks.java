@@ -26,7 +26,7 @@ public class Hooks {
     @Before
     public void initialise() throws IOException {
         testUtils.log().info("Hooks: Before");
-//        new BasePage().activateApp();
+        new BasePage().activateApp();
         new VideoManager().startRecording();
     }
 
@@ -42,6 +42,6 @@ public class Hooks {
         }
 
         new VideoManager().stopRecording(scenario);
-//        new BasePage().terminateApp();
+        new BasePage().terminateApp();
     }
 }
