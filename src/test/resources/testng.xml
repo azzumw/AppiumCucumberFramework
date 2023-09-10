@@ -4,7 +4,7 @@
         <parameter name="platformName" value="Android"/>
         <parameter name="udid" value="emulator-5554"/>
         <parameter name="platformVersion" value="api_33"/>
-        <parameter name="deviceName" value="emulator-5554"/>
+        <parameter name="deviceName" value="pixel_6"/>
         <parameter name="systemPort" value="9999"/>
         <parameter name="chromeDriverPort" value="9998"/>
         <classes>
